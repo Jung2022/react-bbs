@@ -1,11 +1,26 @@
-import './App.css';
-import AxiosTest from './AxiosTest';
+//import './App.css';
+import React from 'react';
+import { HashRouter, Route } from 'react-router-dom';
+
+import Home from './routes/Home';
+import Detail from './routes/Detail';
+import Write from './routes/Write';
+import Navigation from './components/Navigation';
+
+// import AxiosTest from './AxiosTest';
 
 function App() {
   return (
-    <div className="App">
-      <AxiosTest />
-    </div>
+    <HashRouter>
+      <Navigation />
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/detail" component={Detail} />
+      <Route path="/write" component={Write} />
+    </HashRouter>
+
+    // <div className="App">
+    //   <AxiosTest />
+    // </div>
   );
 }
 
