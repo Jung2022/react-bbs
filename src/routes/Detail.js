@@ -1,7 +1,46 @@
 import React from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Detail extends React.Component {
+  state = {
+    boardNo: '',
+    title: '',
+    content: '',
+    userId: '',
+    createDate: '',
+    hitCnt: 0,
+  };
+
+  setData = (data) => {
+    this.setState();
+  };
+
+  componentDidMount() {
+    const boardNo = this.props.match.params.boardno;
+    //쉼표가 아니라 !표 옆에 있는 `(~)임 es6방식?
+    const url = `/ajax/boardDetail/${boardNo}`;
+    axios
+      .get(url)
+      .then((res) => {
+        console.log('통신 성공');
+        this.setState({
+          boardNo: res.data.boardNo,
+          title: res.data.title,
+          content: res.data.content,
+          userId: res.data.createId,
+          createDate: res.data.createDate,
+          hitCnt: res.data.hitCnt,
+        });
+      })
+      .catch((err) => {
+        console.log('통신 실패');
+        console.log(err);
+      });
+  }
   render() {
+    // const data = this.props.match.params.boardno;
+    // console.log(data);
     return (
       <div>
         <header class="container">
@@ -16,29 +55,56 @@ class Detail extends React.Component {
             <article>
               <div class="row my-3">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control" id="title"></input>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    value={this.state.title}
+                  ></input>
                 </div>
               </div>
               <div class="row my-3">
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" id="create-id"></input>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="create-id"
+                    value={this.state.userId}
+                  ></input>
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" id="hit-cnt"></input>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="hit-cnt"
+                    value={this.state.hitCnt}
+                  ></input>
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" id="create-date"></input>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="create-date"
+                    value={this.state.createDate}
+                  ></input>
                 </div>
               </div>
               <div class="row my-3">
                 <div class="col-sm-12">
-                  <textarea rows="10" class="form-control" id="content"></textarea>
+                  <textarea
+                    rows="10"
+                    class="form-control"
+                    id="content"
+                    value={this.state.content}
+                  ></textarea>
                 </div>
               </div>
               <div class="clearfix">
-                <button class="btn btn-secondary float-start">목록</button>
-                <button class="btn btn-warning float-end">취소</button>
-                <button class="btn btn-primary float-end mx-3">등록</button>
+                <button class="btn btn-secondary float-start">
+                  <Link to="/">목록</Link>
+                </button>
+                <button class="btn btn-danger float-end">삭제</button>
+                <button class="btn btn-primary float-end mx-3">수정</button>
               </div>
             </article>
           </section>

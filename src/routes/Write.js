@@ -1,6 +1,44 @@
 import React from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Write extends React.Component {
+  state = {
+    title: '',
+    content: '',
+    userId: '',
+  };
+
+  titleChange = (e) => {
+    this.setState({ title: e.target.value });
+  };
+
+  userIdChange = (e) => {
+    this.setState({ userId: e.target.value });
+  };
+
+  contentChange = (e) => {
+    this.setState({ content: e.target.value });
+  };
+
+  sendData = () => {
+    const datas = {
+      title: this.state.title,
+      content: this.state.content,
+      createId: this.state.userId,
+    };
+    //꼭 {params:}로 보내야함 아니면 에러뜸
+    axios
+      .post('/ajax/boardWrite', null, { params: datas })
+      .then((res) => {
+        console.log('통신 성공');
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log('통신 실패');
+        console.log(err);
+      });
+  };
   render() {
     return (
       <div>
@@ -24,6 +62,8 @@ class Write extends React.Component {
                       id="title"
                       name="title"
                       placeholder="제목을 입력해주세요"
+                      value={this.state.title}
+                      onChange={this.titleChange}
                     ></input>
                   </div>
                   <div class="my-3">
@@ -34,6 +74,8 @@ class Write extends React.Component {
                       id="user-id"
                       name="user-id"
                       placeholder="사용자의 id를 입력하세요"
+                      value={this.state.userId}
+                      onChange={this.userIdChange}
                     ></input>
                   </div>
                   <div class="my-3">
@@ -44,15 +86,23 @@ class Write extends React.Component {
                       id="content"
                       name="content"
                       placeholder="간단한 내용을 입력하세요"
+                      value={this.state.content}
+                      onChange={this.contentChange}
                     ></textarea>
                   </div>
                   <div class="my-3 d-flex justify-content-between">
                     <div>
-                      <button class="btn btn-secondary">목록</button>
+                      <button type="button" class="btn btn-secondary">
+                        <Link to="/">목록</Link>
+                      </button>
                     </div>
                     <div>
-                      <button class="btn btn-primary mx-3">등록</button>
-                      <button class="btn btn-warning">취소</button>
+                      <button type="button" class="btn btn-primary mx-3" onClick={this.sendData}>
+                        등록
+                      </button>
+                      <button type="reset" class="btn btn-warning">
+                        취소
+                      </button>
                     </div>
                   </div>
                 </div>
