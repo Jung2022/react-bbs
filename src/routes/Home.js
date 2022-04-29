@@ -4,20 +4,19 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <header className="container">
-          <div className="p-5 mb-4 bg-light rounded-3 text-center">
-            <div className="container-fluid py-5">
-              <h1 className="display-5 fw-bold">React와 SpringBoot를 활용한 게시판</h1>
-              <p>목록 보기</p>
+        <header class="container">
+          <div class="p-5 mb-4 bg-light rounded-3 text-center">
+            <div class="container-fluid py-5">
+              <h1 class="display-5 fw-bold">React와 SpringBoot를 활용한 게시판</h1>
             </div>
           </div>
         </header>
-        <main className="container">
+        <main class="container">
           <section>
             <article>
-              <div className="row">
-                <div className="col">
-                  <table className="table table-hover table-striped text-center">
+              <div class="row">
+                <div class="col">
+                  <table class="table table-hover table-striped text-center">
                     <colgroup>
                       <col width="10%" />
                       <col width="50%" />
@@ -38,14 +37,14 @@ class Home extends React.Component {
                       <tr>
                         <td>1</td>
                         <td>테스트 제목</td>
-                        <td>테스트</td>
+                        <td>테스터</td>
                         <td>2022.04.29 12:50:00</td>
                         <td>0</td>
                       </tr>
                       <tr>
                         <td>2</td>
                         <td>테스트 제목</td>
-                        <td>테스트</td>
+                        <td>테스터</td>
                         <td>2022.04.29 12:50:00</td>
                         <td>0</td>
                       </tr>
@@ -53,14 +52,14 @@ class Home extends React.Component {
                   </table>
                 </div>
               </div>
-              <div className="d-flex justify-content-end">
-                <button className="btn btn-primary">글쓰기</button>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary">글쓰기</button>
               </div>
             </article>
           </section>
         </main>
-        <footer className="container-fluid mt-5 py-5 border-top">
-          <p className="lead text-mute text-center">made by bitc</p>
+        <footer class="container-fluid mt-5 py-5 border-top">
+          <p class="lead text-mute text-center">made by bitc</p>
         </footer>
       </div>
     );
